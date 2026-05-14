@@ -1,7 +1,7 @@
 # ═══ ÉTAPE 1 : BUILD ═══════════════════════════════════════════════════
 # On utilise une image qui contient Maven ET Java 21 (Eclipse Temurin)
 # "AS build" donne un nom à cette étape pour la référencer plus tard
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+FROM maven:3.9.6-eclipse-temurin-25 AS build
 
 # On définit le dossier de travail dans le conteneur
 WORKDIR /app
@@ -18,7 +18,7 @@ RUN mvn clean package -DskipTests
 # ═══ ÉTAPE 2 : IMAGE FINALE (légère) ═══════════════════════════════════
 # On repart d'une image plus légère : juste le JRE (Java Runtime)
 # Pas besoin de Maven dans l'image finale → image plus petite → démarrage plus rapide
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:25-jre
 
 # Dossier de travail dans l'image finale
 WORKDIR /app
